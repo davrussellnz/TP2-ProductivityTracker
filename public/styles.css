@@ -1,0 +1,170 @@
+/* Global settings styles.css */
+* {
+  box-sizing: border-box;
+  font-family: 'Helvetica', Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to right, #f9d423, #ff4e50);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Add a margin-top value to position the content higher */
+  margin-top: -10px;
+  
+}
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Add this property */
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+input, select, button {
+  
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+/* Register button */
+#register-form button {
+  color: white;
+  background-color: #55c932; /* Green */
+}
+
+#register-form button:hover {
+  color: white;
+  background-color: #41a035; /* Darker green */
+}
+
+/* Login button */
+#login-form button[type="submit"] {
+  color: white;
+  background-color: #55c932; /* Green */
+}
+
+#login-form button[type="submit"]:hover {
+  color: white;
+  background-color: #41a035; /* Darker green */
+}
+
+/* Log Activity button */
+#activity-form button {
+  color: white;
+  background-color: #55c932; /* Blue */
+}
+
+#activity-form button:hover {
+  color: white;
+  background-color: #41a035; /* Darker blue */
+}
+
+
+
+/* Logout button */
+#logout-button {
+  color: white;
+  background-color: red; /* Red */
+}
+
+#logout-button:hover {
+  color: white;
+  background-color: #c73c3c; /* Darker red */
+}
+
+#clear-data-button {
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 0;
+  right: 10;
+}
+
+#clear-data-button:hover {
+  background-color: darkred;
+}
+
+
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 6px 6px 10px rgba(85, 55, 13, 0.8);
+}
+
+/* Add the following rule */
+#visualization-container h2 {
+  text-shadow: 6px 6px 10px rgba(85, 55, 13, 0.8);
+}
+
+/* Visualization container */
+#visualization-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 100%; /* Add this property */
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  margin-right: 20px;
+}
+
+form {
+  width: calc(33.333% - 10px);
+  margin: 10px 0;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+.arc text {
+  font-family: sans-serif;
+  font-size: 12px;
+  text-anchor: middle;
+  fill: #000;
+}
+

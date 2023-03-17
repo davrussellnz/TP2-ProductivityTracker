@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.6.0/validator.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+</head>
+<body>
+    <h1>Productivity Tracker</h1>
+    <div class="container">
+        <div class="form-container">
+          <form id="register-form">
+            <input type="text" id="username" placeholder="Username" />
+            <input type="email" id="email" placeholder="Email" />
+            <input type="password" id="password" placeholder="Password" />
+            <button type="submit">Register</button>
+        </form>
+            
+            <form id="login-form">
+              <input type="text" id="login-username" placeholder="Username" />
+              <input type="email" id="login-email" placeholder="Email" />
+              <input type="password" id="login-password" placeholder="Password" />
+                <button type="submit">Login</button>
+                <button id="logout-button">Logout</button>
+            </form>
+            
+            <form id="activity-form">
+                <label for="activity-type">Activity Type:</label>
+                <select id="activity-type" name="activity-type">
+                    <option value="work">Work</option>
+                    <option value="eating">Eating</option>
+                    <option value="leisure">Leisure</option>
+                    <option value="sleep">Sleep</option>
+                </select>
+                <label for="start-time">Start Time:</label>
+                <input type="datetime-local" id="start-time" name="start-time">
+                <label for="end-time">End Time:</label>
+                <input type="datetime-local" id="end-time" name="end-time">
+                <button type="submit">Log Activity</button>
+            </form>
+        </div>
+        <div id="visualization-container" class="visualization-container">
+          
+<h2 id="user-visualization">Visualization</h2>
+
+          <button id="clear-data-button">Clear Data</button>
+        </div>
+       
+    </div>
+    <script src="client.js"></script>
+</body>
+</html>

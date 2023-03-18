@@ -9,7 +9,7 @@
       e.preventDefault();
 
       if (!registerUsername.value || !registerEmail.value || !registerPassword.value) {
-          alert('Please fill out all fields');
+          alert('Veuillez remplir tous les champs');
           return;
         }
     
@@ -32,10 +32,10 @@
           
     
         if (response.ok) {
-          alert('User registered successfully');
+          alert('Utilisateur enregistré avec succès');
         } else {
           const errorData = await response.json();
-          throw new Error(`Failed to register: ${errorData.message}`);
+          throw new Error(`Échec de l'enregistrement : ${errorData.message}`);
           
         }
       } catch (error) {
@@ -54,7 +54,7 @@
     e.preventDefault();
 
     if (!loginUsername.value || !loginEmail.value || !loginPassword.value) {
-      alert('Please fill out all fields');
+      alert('Veuillez remplir tous les champs');
       return;
     }
 
@@ -75,22 +75,22 @@
       });
 
       if (response.ok) {
-          alert('You have been successfully logged in.');
+          alert('Vous avez été connecté avec succès.');
       
           // Get the h2 element by its ID
           const userVisualizationHeader = document.getElementById('user-visualization');
       
           // Update the h2 element with the username
-          userVisualizationHeader.textContent = `${loginUsername.value} Visualization`;
+          userVisualizationHeader.textContent = `Visualisation des activités de ${loginUsername.value}`;
       
           fetchAndVisualizeData(); 
 
         } else {
           
-          throw new Error('Failed to log in');
+          throw new Error('Échec de la connexion');
         }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Erreur:', error);
     }
   });
 
@@ -106,10 +106,10 @@
       });
 
       if (response.ok) {
-          alert('You have been successfully logged out.');
+          alert('Vous avez été déconnecté avec succès.');
         location.reload();
       } else {
-        throw new Error('Failed to log out');
+        throw new Error('Échec de la déconnexion');
       }
     } catch (error) {
       console.error('Error:', error);

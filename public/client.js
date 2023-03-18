@@ -207,6 +207,18 @@
     return (endTime - startTime) / 60000;
   }
 
+  function translateActivityType(activityType) {
+    const translations = {
+      sleep: 'Sommeil',
+      work: 'Travail',
+      leisure: 'Récréation',
+      eating: 'Alimentation',
+    };
+  
+    return translations[activityType] || activityType;
+  }
+  
+
   function fetchAndVisualizeData() {
 
       d3.select("#visualization-container").selectAll("svg").remove();
@@ -300,6 +312,7 @@
         .join("text")
         .attr("transform", (d) => `translate(${path.centroid(d)})`)
         .attr("dy", ".35em")
-        .text((d) => `${d.data.type}: ${((d.data.duration / totalDuration) * 100).toFixed(2)}%`);
+        .text((d) => `${translateActivityType(d.data.type)}: ${((d.data.duration / totalDuration) * 100).toFixed(2)}%`);
+
     }
     

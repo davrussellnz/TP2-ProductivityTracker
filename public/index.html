@@ -11,44 +11,44 @@
 
 </head>
 <body>
-    <h1>Productivity Tracker</h1>
+    <h1>Tracker de Productivité</h1>
     <div class="container">
         <div class="form-container">
           <form id="register-form">
-            <input type="text" id="username" placeholder="Username" />
+            <input type="text" id="username" placeholder="Nom d'utilisateur" />
             <input type="email" id="email" placeholder="Email" />
-            <input type="password" id="password" placeholder="Password" />
-            <button type="submit">Register</button>
+            <input type="password" id="password" placeholder="Mot de passe" />
+            <button type="submit">S'inscrire</button>
         </form>
             
             <form id="login-form">
-              <input type="text" id="login-username" placeholder="Username" />
+              <input type="text" id="login-username" placeholder="Nom d'utilisateur" />
               <input type="email" id="login-email" placeholder="Email" />
-              <input type="password" id="login-password" placeholder="Password" />
-                <button type="submit">Login</button>
-                <button id="logout-button">Logout</button>
+              <input type="password" id="login-password" placeholder="Mot de passe" />
+                <button type="submit">Connecter</button>
+                <button id="logout-button">Déconnecter</button>
             </form>
             
             <form id="activity-form">
-                <label for="activity-type">Activity Type:</label>
+                <label for="activity-type">Type d'activité:</label>
                 <select id="activity-type" name="activity-type">
-                    <option value="work">Work</option>
-                    <option value="eating">Eating</option>
-                    <option value="leisure">Leisure</option>
-                    <option value="sleep">Sleep</option>
+                    <option value="work">Travail</option>
+                    <option value="eating">Alimentation</option>
+                    <option value="leisure">Récréation</option>
+                    <option value="sleep">Sommeil</option>
                 </select>
-                <label for="start-time">Start Time:</label>
+                <label for="start-time">Heure de démarrage:</label>
                 <input type="datetime-local" id="start-time" name="start-time">
-                <label for="end-time">End Time:</label>
+                <label for="end-time">Heure de fin:</label>
                 <input type="datetime-local" id="end-time" name="end-time">
-                <button type="submit">Log Activity</button>
+                <button type="submit">Enregistrer</button>
             </form>
         </div>
         <div id="visualization-container" class="visualization-container">
           
-<h2 id="user-visualization">Visualization</h2>
+<h2 id="user-visualization">Visualisation des activités</h2>
 
-          <button id="clear-data-button">Clear Data</button>
+          <button id="clear-data-button">Effacer</button>
         </div>
        
     </div>

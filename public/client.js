@@ -86,6 +86,7 @@ loginForm.addEventListener('submit', async (e) => {
         fetchAndVisualizeData(); 
 
       } else {
+        
         throw new Error('Failed to log in');
       }
   } catch (error) {

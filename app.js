@@ -10,7 +10,7 @@
   });
 
   server.listen(3000, () => {
-      console.log('Server is listening on port 3000');
+      console.log('Le serveur écoute sur le port 3000');
     });
     app.use('/', express.static(__dirname + '/public'));
 
@@ -74,7 +74,6 @@
     const { username, email, password } = req.body;
 
     // Validation
-   
     if (!username || !email || !password) {
       return res.status(400).json({ message: 'Tous les champs sont obligatoires' });
     }
@@ -161,8 +160,7 @@
 
     const { activity_type, start_time, end_time } = req.body;
 
-    // Validation avec Validator.js
-    
+    // Validation avec Validator.js 
     if (!activity_type || !start_time || !end_time) {
       return res.status(400).json({ message: 'Tous les champs sont obligatoires' });
     }
@@ -187,7 +185,7 @@
       }
       console.log('User in session:', req.session.user);
     
-      // Retrieve the user's activity history
+      // Récupérer l'historique des activités de l'utilisateur
       const activities = await Activity.find({ user_id: req.session.user._id });
     
       res.status(200).json({ activities });

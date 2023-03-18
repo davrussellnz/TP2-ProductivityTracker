@@ -8,6 +8,8 @@
   registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
+
+      // Vérifier si tous les champs sont remplis
       if (!registerUsername.value || !registerEmail.value || !registerPassword.value) {
           alert('Veuillez remplir tous les champs');
           return;
@@ -19,6 +21,7 @@
         password: registerPassword.value,
       };
     
+      // Envoi des données d'inscription au serveur
       try {
           const response = await fetch('/register', {
               method: 'POST',
@@ -30,7 +33,7 @@
             });
             
           
-    
+     // Vérifier si l'inscription a réussi
         if (response.ok) {
           alert('Utilisateur enregistré avec succès');
         } else {
@@ -53,6 +56,8 @@
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Vérifier si tous les champs sont remplis
+
     if (!loginUsername.value || !loginEmail.value || !loginPassword.value) {
       alert('Veuillez remplir tous les champs');
       return;
@@ -64,6 +69,7 @@
       password: loginPassword.value,
     };
 
+    // Envoi des données de connexion au serveur
     try {
       const response = await fetch('/login', {
         method: 'POST',
@@ -77,10 +83,10 @@
       if (response.ok) {
           alert('Vous avez été connecté avec succès.');
       
-          // Get the h2 element by its ID
+          // Obtenir l'élément h2 par son ID
           const userVisualizationHeader = document.getElementById('user-visualization');
       
-          // Update the h2 element with the username
+          // Mettre à jour l'élément h2 avec le nom d'utilisateur
           userVisualizationHeader.textContent = `Visualisation des activités de ${loginUsername.value}`;
       
           fetchAndVisualizeData(); 
@@ -99,6 +105,7 @@
   logoutButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
+    // Vérifier si la déconnexion a réussi
     try {
       const response = await fetch('/logout', {
         method: 'POST',
@@ -118,7 +125,7 @@
 
 
 
-
+//éléments du formulaire d'activité
   const activityForm = document.getElementById('activity-form');
   const activityType = document.getElementById('activity-type');
   const startTime = document.getElementById('start-time');
@@ -136,10 +143,11 @@
       
       const email = loginEmail.value || registerEmail.value;
     
+      // Vérification et envoi des données d'activité
       if (validateInput(activityData, email)) {
         sendActivityData(activityData);
       } else {
-        console.error('Invalid input data');
+        console.error('Données dentrée non valides');
       }
     });
     
@@ -152,8 +160,9 @@
       const isValidEmail = validator.isEmail(email);
       const isEndTimeGreaterThanStartTime = isValidStartTime < isValidEndTime;
 
+       // Afficher une alerte si l'heure de fin est antérieure à l'heure de début
       if (!isEndTimeGreaterThanStartTime) {
-          alert('The end time must be later than the start time');
+          alert('Lheure de fin doit être postérieure à lheure de début.');
       }
     
       return (
@@ -166,7 +175,7 @@
     }
     
     
-
+// Envoyer les données d'activité au serveur
   function sendActivityData(data) {
       fetch('/activities', {
         method: 'POST',
@@ -180,7 +189,7 @@
           if (response.ok) {
             return response.json();
           } else {
-            throw new Error('Failed to log activity');
+            throw new Error('Échec de lenregistrement de lactivité');
           }
         })
         .then((data) => {
@@ -192,7 +201,7 @@
         });
     }
     
-
+// Connexion pour recevoir les données en temps réel
   const socket = io();
 
   socket.on('data', (data) => {
@@ -201,12 +210,14 @@
 
   const visualizationContainer = document.getElementById('visualization-container');
 
+  // Calculer la durée d'une activité
   function getActivityDuration(activity) {
     const startTime = new Date(activity.start_time);
     const endTime = new Date(activity.end_time);
     return (endTime - startTime) / 60000;
   }
 
+  // Traduire le type d'activité en français
   function translateActivityType(activityType) {
     const translations = {
       sleep: 'Sommeil',
@@ -218,7 +229,7 @@
     return translations[activityType] || activityType;
   }
   
-
+// Récupérer les données d'activité et mettre à jour la visualisation
   function fetchAndVisualizeData() {
 
       d3.select("#visualization-container").selectAll("svg").remove();
@@ -235,7 +246,7 @@
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error('Failed to fetch activity data');
+        throw new Error('Échec de lextraction des données dactivité');
       }
     })
     .then((data) => {
@@ -245,7 +256,8 @@
   }
 
   function visualizeData(data) {
-    // Clear the existing visualization data
+  
+    // Effacer les données de visualisation existantes
     d3.select("#visualization-container").selectAll("text").remove();
   
     const activityDurationData = data.reduce((acc, activity) => {
@@ -266,12 +278,15 @@
       duration: value,
     }));
   
+      // Calculer la durée totale de toutes les activités
     const totalDuration = pieData.reduce((acc, activity) => acc + activity.duration, 0);
   
+    //Dimensions du diagramme circulaire
     const width = 500;
     const height = 500;
     const radius = Math.min(width, height) / 2;
   
+    // Créer l'élément SVG pour le diagramme circulaire
     const svg = d3
       .select(visualizationContainer)
       .selectAll("svg")
@@ -284,12 +299,14 @@
       .join("g")
       .attr("transform", `translate(${width / 2},${height / 2})`);
   
+      // Pour les couleurs du diagramme 
     const color = d3.scaleOrdinal(d3.schemeCategory10);
   
     const pie = d3.pie().value((d) => d.duration);
   
     const path = d3.arc().outerRadius(radius - 10).innerRadius(0);
   
+    // Mettre à jour les éléments "arc"
     const arc = svg
       .selectAll(".arc")
       .data(pie(pieData))
@@ -306,6 +323,7 @@
       .attr("d", path)
       .attr("fill", (d) => color(d.data.type));
   
+      // Ajouter les étiquettes de type d'activité 
     arc
       .selectAll(".label")
       .data((d) => [d])
@@ -315,6 +333,7 @@
       .attr("dy", "-0.2em")
       .text((d) => `${translateActivityType(d.data.type)}`);
   
+      // Ajouter les pourcentages 
     arc
       .selectAll(".percentage")
       .data((d) => [d])

@@ -245,74 +245,83 @@
   }
 
   function visualizeData(data) {
-      // Clear the existing visualization data
-      d3.select("#visualization-container").selectAll("text").remove();
-    
-      const activityDurationData = data.reduce((acc, activity) => {
-        const activityType = activity.activity_type;
-        const duration = getActivityDuration(activity);
-    
-        if (acc[activityType]) {
-          acc[activityType] += duration;
-        } else {
-          acc[activityType] = duration;
-        }
-    
-        return acc;
-      }, {});
-    
-      const pieData = Object.entries(activityDurationData).map(([key, value]) => ({
-        type: key,
-        duration: value,
-      }));
-    
-      const totalDuration = pieData.reduce((acc, activity) => acc + activity.duration, 0);
-    
-      const width = 500;
-      const height = 500;
-      const radius = Math.min(width, height) / 2;
-    
-      const svg = d3
-        .select(visualizationContainer)
-        .selectAll("svg")
-        .data([null])
-        .join("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .selectAll("g")
-        .data([null])
-        .join("g")
-        .attr("transform", `translate(${width / 2},${height / 2})`);
-    
-      const color = d3.scaleOrdinal(d3.schemeCategory10);
-    
-      const pie = d3.pie().value((d) => d.duration);
-    
-      const path = d3.arc().outerRadius(radius - 10).innerRadius(0);
-    
-      const arc = svg
-        .selectAll(".arc")
-        .data(pie(pieData))
-        .join(
-          (enter) => enter.append("g").attr("class", "arc"),
-          (update) => update,
-          (exit) => exit.remove()
-        );
-    
-      arc
-        .selectAll("path")
-        .data((d) => [d])
-        .join("path")
-        .attr("d", path)
-        .attr("fill", (d) => color(d.data.type));
-    
-      arc
-        .selectAll("text")
-        .data((d) => [d])
-        .join("text")
-        .attr("transform", (d) => `translate(${path.centroid(d)})`)
-        .attr("dy", ".35em")
-        .text((d) => `${translateActivityType(d.data.type)}: ${((d.data.duration / totalDuration) * 100).toFixed(2)}%`);
-
-    }
-    
+    // Clear the existing visualization data
+    d3.select("#visualization-container").selectAll("text").remove();
+  
+    const activityDurationData = data.reduce((acc, activity) => {
+      const activityType = activity.activity_type;
+      const duration = getActivityDuration(activity);
+  
+      if (acc[activityType]) {
+        acc[activityType] += duration;
+      } else {
+        acc[activityType] = duration;
+      }
+  
+      return acc;
+    }, {});
+  
+    const pieData = Object.entries(activityDurationData).map(([key, value]) => ({
+      type: key,
+      duration: value,
+    }));
+  
+    const totalDuration = pieData.reduce((acc, activity) => acc + activity.duration, 0);
+  
+    const width = 500;
+    const height = 500;
+    const radius = Math.min(width, height) / 2;
+  
+    const svg = d3
+      .select(visualizationContainer)
+      .selectAll("svg")
+      .data([null])
+      .join("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .selectAll("g")
+      .data([null])
+      .join("g")
+      .attr("transform", `translate(${width / 2},${height / 2})`);
+  
+    const color = d3.scaleOrdinal(d3.schemeCategory10);
+  
+    const pie = d3.pie().value((d) => d.duration);
+  
+    const path = d3.arc().outerRadius(radius - 10).innerRadius(0);
+  
+    const arc = svg
+      .selectAll(".arc")
+      .data(pie(pieData))
+      .join(
+        (enter) => enter.append("g").attr("class", "arc"),
+        (update) => update,
+        (exit) => exit.remove()
+      );
+  
+    arc
+      .selectAll("path")
+      .data((d) => [d])
+      .join("path")
+      .attr("d", path)
+      .attr("fill", (d) => color(d.data.type));
+  
+    arc
+      .selectAll(".label")
+      .data((d) => [d])
+      .join("text")
+      .attr("class", "label")
+      .attr("transform", (d) => `translate(${path.centroid(d)})`)
+      .attr("dy", "-0.2em")
+      .text((d) => `${translateActivityType(d.data.type)}`);
+  
+    arc
+      .selectAll(".percentage")
+      .data((d) => [d])
+      .join("text")
+      .attr("class", "percentage")
+      .attr("transform", (d) => `translate(${path.centroid(d)})`)
+      .attr("dy", "1em")
+      .text((d) => `${((d.data.duration / totalDuration) * 100).toFixed(2)}%`);
+  }
+  

@@ -168,3 +168,10 @@ form {
   fill: #000;
 }
 
+.label {
+  font-weight: bold;
+}
+.percentage {
+  font-weight: normal;
+}
+

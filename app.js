@@ -3,6 +3,7 @@
   const express = require('express');
   const app = express();
   const server = require('http').Server(app);
+  const open = require('open');
   const io = require('socket.io')(server, {
     cors: {
       origin: '*',
@@ -10,8 +11,10 @@
   });
 
   server.listen(3000, () => {
-      console.log('Le serveur écoute sur le port 3000');
-    });
+    console.log('Le serveur écoute sur le port 3000');
+    open('http://localhost:3000');
+  });
+  
     app.use('/', express.static(__dirname + '/public'));
 
     const cors = require('cors');

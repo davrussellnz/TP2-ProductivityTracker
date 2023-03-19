@@ -12,7 +12,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Add a margin-top value to position the content higher */
   margin-top: -10px;
   
 }
@@ -22,13 +21,13 @@ body {
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: stretch; /* Add this property */
+  align-items: stretch; 
   align-items: flex-start;
   width: 90%;
   max-width: 1200px;
 }
 
-/* Forms */
+
 form {
   display: flex;
   flex-direction: column;
@@ -50,50 +49,50 @@ input, select, button {
   transition: background-color 0.3s;
 }
 
-/* Register button */
+
 #register-form button {
   color: white;
-  background-color: #55c932; /* Green */
+  background-color: #55c932; 
 }
 
 #register-form button:hover {
   color: white;
-  background-color: #41a035; /* Darker green */
+  background-color: #41a035; 
 }
 
-/* Login button */
+
 #login-form button[type="submit"] {
   color: white;
-  background-color: #55c932; /* Green */
+  background-color: #55c932; 
 }
 
 #login-form button[type="submit"]:hover {
   color: white;
-  background-color: #41a035; /* Darker green */
+  background-color: #41a035; 
 }
 
-/* Log Activity button */
+
 #activity-form button {
   color: white;
-  background-color: #55c932; /* Blue */
+  background-color: #55c932; 
 }
 
 #activity-form button:hover {
   color: white;
-  background-color: #41a035; /* Darker blue */
+  background-color: #41a035; 
 }
 
 
 
-/* Logout button */
+
 #logout-button {
   color: white;
-  background-color: red; /* Red */
+  background-color: red; 
 }
 
 #logout-button:hover {
   color: white;
-  background-color: #c73c3c; /* Darker red */
+  background-color: #c73c3c; 
 }
 
 #clear-data-button {
@@ -114,20 +113,16 @@ input, select, button {
 }
 
 
-
-/* Headings */
 h1, h2 {
   text-align: center;
   margin-bottom: 20px;
   text-shadow: 6px 6px 10px rgba(85, 55, 13, 0.8);
 }
 
-/* Add the following rule */
 #visualization-container h2 {
   text-shadow: 6px 6px 10px rgba(85, 55, 13, 0.8);
 }
 
-/* Visualization container */
 #visualization-container {
   position: relative;
   width: 100%;
@@ -138,7 +133,7 @@ h1, h2 {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-height: 100%; /* Add this property */
+  min-height: 100%; 
 }
 
 .form-container {

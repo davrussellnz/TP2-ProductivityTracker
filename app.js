@@ -42,7 +42,7 @@
   const User = require('./models/user');
   const Activity = require('./models/activity');
 
-  mongoose.connect('mongodb+srv://davrussell:5280Dr$$$@cluster0.ewfkbly.mongodb.net/?retryWrites=true&w=majority', {
+  mongoose.connect('mongodb+srv://user:password@cluster0.ewfkbly.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -58,7 +58,7 @@
       secret: secretKey,
       resave: false,
       saveUninitialized: true,
-      store: MongoStore.create({ mongoUrl: 'mongodb+srv://davrussell:5280Dr$$$@cluster0.ewfkbly.mongodb.net/?retryWrites=true&w=majority' }),
+      store: MongoStore.create({ mongoUrl: 'mongodb+srv://user:password@cluster0.ewfkbly.mongodb.net/?retryWrites=true&w=majority' }),
       cookie: {
         maxAge: 24 * 60 * 60 * 1000, // pour 1 jour
         secure: false, 
